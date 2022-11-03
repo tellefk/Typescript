@@ -1,26 +1,13 @@
-import React, { useState } from "react";
+import React, {useContext } from "react";
 import "./App.css";
 import Todos from "./components/Todos";
 import NewTodo from "./components/NewTodo";
 
-import Todo from "./models/todo";
+import {TodoContext} from "./store/todos-context"
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  // const todos=[new Todo("Learn React"),new Todo("Learn Typescript")]
-
-  function addTodo(enteredText: string) {
-    const newTodo = new Todo(enteredText);
-    setTodos((prevTodos) => {
-      return prevTodos.concat(newTodo);
-    });
-  }
-
-  function removeTodo(id: string) {
-    setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.id !== id);
-    });
-  }
+  const todoCtx=useContext(TodoContext)
+  
 
   return (
     <div className="App">
@@ -33,8 +20,8 @@ function App() {
       </div>
 
       <main>
-        <NewTodo addTodo={addTodo} />
-        <Todos items={todos} removeTodo={removeTodo} />
+        <NewTodo addTodo={todoCtx.addTodo} />
+        <Todos items={todoCtx.items} removeTodo={todoCtx.removeTodo} />
       </main>
     </div>
   );
