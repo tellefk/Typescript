@@ -7,8 +7,6 @@ import {TodoContext} from "./store/todos-context"
 
 function App() {
   const todoCtx=useContext(TodoContext)
-  
-
   return (
     <div className="App">
       <header>Big header</header>
@@ -20,8 +18,10 @@ function App() {
       </div>
 
       <main>
-        <NewTodo addTodo={todoCtx.addTodo} />
-        <Todos items={todoCtx.items} removeTodo={todoCtx.removeTodo} />
+        {/* <NewTodo addTodo={todoCtx.addTodo} /> */}
+        {/* <Todos items={todoCtx.items} removeTodo={todoCtx.removeTodo} /> */}
+        <NewTodo/>
+        <Todos items={todoCtx.items}/>
       </main>
     </div>
   );

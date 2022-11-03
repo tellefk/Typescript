@@ -1,8 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useContext } from "react";
 
-const NewTodo: React.FC<{ addTodo: (text: string) => void }> = (props) => {
+import { TodoContext } from "../store/todos-context";
+
+const NewTodo: React.FC = (props) => {
   const newTodo = useRef<HTMLInputElement>(null);
-
+  const todoCtx = useContext(TodoContext);
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = newTodo.current!.value;
@@ -10,7 +12,7 @@ const NewTodo: React.FC<{ addTodo: (text: string) => void }> = (props) => {
       //throw an error
       return;
     }
-    props.addTodo(enteredText);
+    todoCtx.addTodo(enteredText);
   };
 
   return (
@@ -23,7 +25,7 @@ const NewTodo: React.FC<{ addTodo: (text: string) => void }> = (props) => {
     </React.Fragment>
   );
 };
- 
+
 // ADD MANTINE STYLES HERE!
 
 export default NewTodo;
